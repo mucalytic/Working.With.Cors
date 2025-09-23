@@ -8,7 +8,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(TestApi.Host)
               .AllowAnyHeader()
-              .AllowAnyMethod()
+              .WithMethods(["GET", "PATCH"])
               .AllowCredentials();
     });
 });

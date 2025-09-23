@@ -43,7 +43,7 @@ public class CorsTests(WebApplicationFactory<IApiMarker> factory) : IClassFixtur
         response.Headers.Select(h => h.Key).Should().Contain("Access-Control-Allow-Origin");
         response.Headers.GetValues("Access-Control-Allow-Origin").Should().Contain(TestApi.Host);
         response.Headers.Select(h => h.Key).Should().Contain("Access-Control-Allow-Methods");
-        response.Headers.GetValues("Access-Control-Allow-Methods").Should().Contain("GET");
+        response.Headers.GetValues("Access-Control-Allow-Methods").SelectMany(val => val.Split(',')).Should().Contain("GET");
         response.Headers.Select(h => h.Key).Should().Contain("Access-Control-Allow-Headers");
         response.Headers.GetValues("Access-Control-Allow-Headers").Should().Contain("Content-Type");
     }
